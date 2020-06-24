@@ -117,6 +117,17 @@ mine={
  ]
 }
 
+[layer_names]
+
+2d_render/layer_1="General"
+2d_physics/layer_1="General"
+2d_render/layer_2="UI"
+2d_physics/layer_2="UI"
+2d_render/layer_3="Environment"
+2d_physics/layer_3="Environment"
+2d_render/layer_4="Entities"
+2d_physics/layer_4="Entities"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

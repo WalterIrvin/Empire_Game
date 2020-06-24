@@ -9,11 +9,11 @@
 [ext_resource path="res://Assets/Scripts/Utility/Hotbar.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Scenes/Utility/InventorySlot.tscn" type="PackedScene" id=8]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/generico.png-1b99b7ea49dbc8200f8ba4379ea0c330.stex"
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -28,7 +28,7 @@ font_data = ExtResource( 3 )
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 6 )
 id_texture_dict = {
-"generico": SubResource( 2 )
+"generico": SubResource( 1 )
 }
 id_stack_dict = {
 "generico": 64
@@ -37,6 +37,7 @@ id_stack_dict = {
 [node name="InventoryHUD" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -90,7 +91,7 @@ margin_bottom = 33.0
 margin_right = 293.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
 custom_colors/font_color_shadow = Color( 0.352941, 0.352941, 0.352941, 1 )
 text = "Inventory"
@@ -531,6 +532,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -35.0
+mouse_filter = 1
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
