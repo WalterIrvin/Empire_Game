@@ -7,7 +7,9 @@ func _ready():
 	for i in range(get_child_count()):
 		hotbar_slots.append(get_child(i))
 
-
+func get_selected_item():
+	return hotbar_slots[cur_slot -1]
+	
 func _process(delta):
 	process_input()
 	set_active()

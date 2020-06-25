@@ -1,8 +1,9 @@
 extends Sprite
-
 export (StreamTexture) var tile_texture
 export var res_type = "none"
 export var res_amt = 0
+export var tool_quality = 0
+export var tool_type = "none"
 var cur_pos = Vector2(0, 0)
 var win_size = OS.get_window_size()
 var amt_ref

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nullium.png-4e1ead128ef87bdb2837854af1903d4e.stex"
+path="res://.import/stone-axe.png-a0d3402b39f960a595f0724292b9bdc5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/nullium.png"
-dest_files=[ "res://.import/nullium.png-4e1ead128ef87bdb2837854af1903d4e.stex" ]
+source_file="res://Assets/Textures/stone-axe.png"
+dest_files=[ "res://.import/stone-axe.png-a0d3402b39f960a595f0724292b9bdc5.stex" ]
 
 [params]
 

@@ -2,7 +2,8 @@ extends CanvasLayer
 
 export var id_texture_dict = {}  # gives textures for each id
 export var id_stack_dict = {}  # max stack size for each id
-var player_ref = null
+export var id_tool_type_dict = {} # what type of tool each relevant tool is
+export var id_tool_quality_dict = {} # mining level of tool/what age it's from
 var is_hidden = false
 var slot_list = []
 var inv_grid
@@ -13,11 +14,12 @@ func _ready():
 	hotbar_ref = find_node("Hotbar")
 	bg_ref = find_node("BG")
 	inv_grid = find_node("InvGrid")
-	for i in range(inv_grid.get_child_count()):
-		slot_list.append(inv_grid.get_child(i))
-		
 	for y in range(hotbar_ref.get_child_count()):
 		slot_list.append(hotbar_ref.get_child(y))
+		
+	for i in range(inv_grid.get_child_count()):
+		slot_list.append(inv_grid.get_child(i))
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("open_inventory"):
@@ -40,12 +42,20 @@ func add_item(res_type, amt):
 			if id_stack_dict.has(res_type) and id_texture_dict.has(res_type):
 				var max_amt = id_stack_dict[res_type]
 				var tile_texture = id_texture_dict[res_type]
+				var tool_type = "none"
+				var tool_quality = 0
+				if id_tool_type_dict.has(res_type):
+					tool_type = id_tool_type_dict[res_type]
+				if id_tool_quality_dict.has(res_type):
+					tool_quality = id_tool_quality_dict[res_type]
 				if max_amt >= amt_left:
 					# item fits into the one slot
 					slot.tile_texture = tile_texture
 					slot.res_type = res_type
 					slot.res_amt = amt_left
 					slot.stack_max = max_amt
+					slot.tool_type = tool_type
+					slot.tool_quality = tool_quality
 					amt_left = 0
 				else:
 					# item needs > 1 slots to fill up
@@ -53,6 +63,8 @@ func add_item(res_type, amt):
 					slot.res_type = res_type
 					slot.res_amt = max_amt
 					slot.stack_max = max_amt
+					slot.tool_type = tool_type
+					slot.tool_quality = tool_quality
 					amt_left -= max_amt
 			else:
 				print("Error: item type " + res_type + " not supported...")
