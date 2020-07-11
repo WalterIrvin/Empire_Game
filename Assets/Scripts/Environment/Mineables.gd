@@ -1,17 +1,16 @@
 extends Area2D
 
 export (StreamTexture) var tile_texture
-export var effective_tool = "none"  # effective tool
-export  var min_quality = 0 # quality needed to mine
-export var res_type = "none"
-export var amt = 1  # amt yielded when mined
-export var base_mine_time = 1  # in seconds
-var player_ref = null
+export var id = 0  # the id to pull from the global dictionary
+export var res_yield = 0  # base yield for the node
+export var min_quality = 0  # base value for mine level
+export var effective_tool = 0 # cur values: 0:axe, 1:pick, 2:shovel
 var interaction = false  # player within interaction range
 var interest = false  # player mouse hovering over node
-var timer
 var progress_bar
 var sprite_ref
+var base_mine_time = 1
+var timer
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -22,41 +21,47 @@ func _ready():
 	timer = base_mine_time
 	progress_bar = find_node("Mining_Progress")
 	sprite_ref = find_node("Mineable_Sprite")
+	sprite_ref.texture = tile_texture
 
 
 func _process(delta):
-	sprite_ref.texture = tile_texture
 	if not interaction:
 		progress_bar.hide()
-	if interaction and player_ref != null:
-		var hotbar_ref = player_ref.get_hotbar()
-		var cur_item = hotbar_ref.get_selected_item()
+	else:
 		var amt_left = timer / base_mine_time
 		progress_bar.value = amt_left * 100
 		progress_bar.show()
 		if Input.is_action_pressed("mine") and timer >= 0 and interest:
 			var mining_speed = delta
-			if min_quality > cur_item.tool_quality:
-				# cannot mine if above min quality
-				mining_speed = 0
+			var cur_id = Globals.Global_Hotbar.get_selected_item().id
+			if cur_id >= 0:
+				var cur_item = Globals.Global_Item_Dictionary.get_item(cur_id)
+				if min_quality > cur_item.tool_quality:
+					# cannot mine if above min quality
+					mining_speed = 0
+				else:
+					# the more levels above min quality a tool is, the better
+					var diff = cur_item.tool_quality - min_quality
+					mining_speed += diff * mining_speed
+				if effective_tool != cur_item.tool_type:
+					mining_speed *= 0.5
+				timer -= mining_speed
 			else:
-				# the more levels above min quality a tool is, the better
-				var diff = cur_item.tool_quality - min_quality
-				mining_speed += diff * mining_speed
-			if effective_tool != cur_item.tool_type:
+				#empty inv slot, quality is 0, type is always wrong
+				if min_quality > 0:
+					# cannot mine if above min quality
+					mining_speed = 0
 				mining_speed *= 0.5
-			timer -= mining_speed
 		if Input.is_action_just_released("mine") and timer > 0 or not interest:
 			timer = base_mine_time
 		if timer <= 0:
 			timer = 0
-			player_ref.add_item(res_type, amt)
+			Globals.Global_Player_Ref.add_item(id, res_yield)
 			queue_free()
 
 
 func _on_Tree_body_entered(body):
 	if body.name == "Player":
-		player_ref = body
 		interaction = true
 
 

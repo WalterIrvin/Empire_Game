@@ -8,7 +8,7 @@ radius = 19.9168
 
 [node name="Flint" type="Area2D"]
 script = ExtResource( 2 )
-res_type = "flint"
+id = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

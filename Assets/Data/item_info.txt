@@ -1,0 +1,13 @@
+# Item info dictionary
+# id,name,stream_texture_path,stack,tool_type,tool_quality
+# id - numerical value, make sure that it is unique to the item in question
+# name - string that shows up in game for this item
+# stream_texture_path - a file path to the img texture of the item
+# tool_type - type of tool this is, -1 if it isn't one. otherwise syntax is [0=axe,1=pick,2=shovel]
+# tool_quality - what mining level the tool is, -1 if it isn't tool, otherwise syntax is [0=hand,1=stone,2=copper,3=bronze,4=iron,5=steel,etc.]
+# no comments beyond item_section
+[ITEM_SECTION]
+0,wood,res://.import/wood.png-7197f4d34ecc8e3d3431dad7a5c6a39d.stex,64,-1,0
+1,flint,res://.import/flint.png-5b95e8466ef5248d668117c621fa8bda.stex,64,-1,0
+2,stick,res://.import/stick.png-2c6041b53fc43e0574b118656a15fad0.stex,64,-1,0
+3,stone axe,res://.import/stone-axe.png-a0d3402b39f960a595f0724292b9bdc5.stex,1,1,1

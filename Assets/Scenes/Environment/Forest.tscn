@@ -8,63 +8,39 @@
 [node name="Mineable" parent="." instance=ExtResource( 1 )]
 position = Vector2( 272.306, -28.828 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3
 
 [node name="Mineable2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 109.856, -101.93 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3
 
 [node name="Mineable3" parent="." instance=ExtResource( 1 )]
 position = Vector2( -35.4462, -9.87552 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3
 
 [node name="Mineable4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 158.591, 93.0094 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3
 
 [node name="Mineable5" parent="." instance=ExtResource( 1 )]
 position = Vector2( 235.304, -203.913 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3
 
 [node name="Mineable6" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1.55624, 128.207 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3
 
 [node name="Mineable7" parent="." instance=ExtResource( 1 )]
 position = Vector2( 17.8012, -203.01 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3
 
 [node name="Mineable8" parent="." instance=ExtResource( 1 )]
 position = Vector2( -152.771, -162.398 )
 tile_texture = ExtResource( 2 )
-effective_tool = "axe"
 min_quality = 1
-res_type = "wood"
-amt = 3

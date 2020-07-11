@@ -4,6 +4,7 @@ var hotbar_slots = []
 var cur_slot = 1
 
 func _ready():
+	Globals.Global_Hotbar = self
 	for i in range(get_child_count()):
 		hotbar_slots.append(get_child(i))
 

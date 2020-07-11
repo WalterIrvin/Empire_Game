@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Textures/basic.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Textures/red.png" type="Texture" id=2]
@@ -10,26 +10,9 @@
 [ext_resource path="res://Assets/Scenes/Utility/InventorySlot.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Textures/health.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Textures/health-over.png" type="Texture" id=10]
-
-[sub_resource type="StreamTexture" id=1]
-flags = 4
-load_path = "res://.import/flint.png-5b95e8466ef5248d668117c621fa8bda.stex"
-
-[sub_resource type="StreamTexture" id=2]
-flags = 4
-load_path = "res://.import/generico.png-1b99b7ea49dbc8200f8ba4379ea0c330.stex"
-
-[sub_resource type="StreamTexture" id=3]
-flags = 4
-load_path = "res://.import/stick.png-2c6041b53fc43e0574b118656a15fad0.stex"
-
-[sub_resource type="StreamTexture" id=4]
-flags = 4
-load_path = "res://.import/stone-axe.png-a0d3402b39f960a595f0724292b9bdc5.stex"
-
-[sub_resource type="StreamTexture" id=5]
-flags = 4
-load_path = "res://.import/wood.png-7197f4d34ecc8e3d3431dad7a5c6a39d.stex"
+[ext_resource path="res://Assets/Scripts/Utility/hungerbar.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Scripts/Utility/thirstbar.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Scripts/Utility/healthbar.gd" type="Script" id=13]
 
 [sub_resource type="DynamicFont" id=6]
 size = 32
@@ -43,32 +26,8 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="StreamTexture" id=8]
-flags = 4
-load_path = "res://.import/stone-axe.png-a0d3402b39f960a595f0724292b9bdc5.stex"
-
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 6 )
-id_texture_dict = {
-"flint": SubResource( 1 ),
-"generico": SubResource( 2 ),
-"stick": SubResource( 3 ),
-"stone_axe": SubResource( 4 ),
-"wood": SubResource( 5 )
-}
-id_stack_dict = {
-"flint": 64,
-"generico": 64,
-"stick": 64,
-"stone_axe": 1,
-"wood": 32
-}
-id_tool_type_dict = {
-"stone_axe": "axe"
-}
-id_tool_quality_dict = {
-"stone_axe": 1
-}
 
 [node name="InventoryHUD" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -587,12 +546,6 @@ anchor_bottom = 0.0
 margin_left = 338.0
 margin_right = 373.0
 margin_bottom = 35.0
-tool_quality = 1
-tool_type = "axe"
-tile_texture = SubResource( 8 )
-res_type = "stone_axe"
-res_amt = 1
-stack_max = 1
 
 [node name="Slot2" parent="HotbarHUD/Hotbar" instance=ExtResource( 8 )]
 anchor_right = 0.0
@@ -697,6 +650,7 @@ nine_patch_stretch = true
 stretch_margin_left = 90
 stretch_margin_top = 18
 stretch_margin_right = 90
+script = ExtResource( 11 )
 
 [node name="Health" type="Label" parent="HealthHUD/VBoxContainer/NeedsCont/NeedsHUD"]
 margin_left = 238.0
@@ -720,6 +674,7 @@ nine_patch_stretch = true
 stretch_margin_left = 90
 stretch_margin_top = 18
 stretch_margin_right = 90
+script = ExtResource( 13 )
 
 [node name="Thirst" type="Label" parent="HealthHUD/VBoxContainer/NeedsCont/NeedsHUD"]
 margin_left = 472.0
@@ -743,3 +698,4 @@ nine_patch_stretch = true
 stretch_margin_left = 90
 stretch_margin_top = 18
 stretch_margin_right = 90
+script = ExtResource( 12 )

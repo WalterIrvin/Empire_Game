@@ -1,19 +1,30 @@
 extends Sprite
 export (StreamTexture) var tile_texture
-export var res_type = "none"
-export var res_amt = 0
-export var tool_quality = 0
-export var tool_type = "none"
+export var id = -1
+export var amt = 0
 var cur_pos = Vector2(0, 0)
 var win_size = OS.get_window_size()
 var amt_ref
 
 func _ready():
+	Globals.Global_Floating_Ref = self
 	amt_ref = get_child(0)
 	
 func _process(delta):
-	if res_amt >= 2:
-		amt_ref.text = "x" + str(res_amt)
+	if id == -1:
+		amt = 0
+	if amt == 0:
+		id = -1
+	if id < 0:
+		amt = 0
+		tile_texture = null
+	else:
+		var cur_item = Globals.Global_Item_Dictionary.get_item(id)
+		var cur_stex = StreamTexture.new()
+		cur_stex.load_path = cur_item.stream_path
+		tile_texture = cur_stex
+	if amt >= 2:
+		amt_ref.text = "x" + str(amt)
 	else:
 		amt_ref.text = ""
 	win_size = OS.get_window_size()
