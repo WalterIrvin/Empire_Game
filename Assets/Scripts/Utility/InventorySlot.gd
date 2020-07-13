@@ -15,6 +15,8 @@ func _ready():
 		amt_ref.text = ""
 		
 func _process(_delta):
+	if amt == 0:
+		id = -1
 	if id < 0:
 		amt = 0
 		img_ref.texture = null

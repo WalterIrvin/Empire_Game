@@ -56,16 +56,35 @@ class Recipe:
 	var recipe_id = 0  #id in the recipe dictionary
 	var id_amt_pair = []  #2d array [[id:amt], ...]
 	var output_id = 0  #the id of the final crafted item
-	func _init(input_id, pairs, crafted_id):
+	var output_amt = 0  #base amt created from the recipe
+	func _init(input_id, pairs, crafted_id, crafted_amt):
 		recipe_id = input_id
 		id_amt_pair = pairs
 		output_id = crafted_id
+		output_amt = crafted_amt
 	
 	func craft(amt):
 		# checks the inventory of player to see if they have the needed
 		# ingredients to make create the item. Crafts item up to amt if possible
+		# returns true if successful, false otherwise
 		if Globals.Global_Inventory != null:
-			pass
+			# check if the inventory has enough of all items for the amt needed
+			for pair in id_amt_pair:
+				var _id = pair[0]
+				var _amt = pair[1] * amt
+				if not Globals.Global_Inventory.check_item(_id, _amt):
+					return false
+			# Removes all the items, after having check all are enough
+			for pair in id_amt_pair:
+				var _id = pair[0]
+				var _amt = pair[1] * amt
+				print(_amt)
+				Globals.Global_Inventory.remove_item(_id, _amt)
+			# adds the crafted item * amt at the end
+			Globals.Global_Inventory.add_item(output_id, amt * output_amt)
+			return true
+		else:
+			return false
 
 class RecipeDict:
 	var recipe_dict = {}
@@ -80,7 +99,9 @@ class RecipeDict:
 			if begin_read:
 				var side = line.split(";")
 				# right hand side
-				var output_id = int(side[1])
+				var right_side = side[1].split(",")
+				var output_id = int(right_side[0])
+				var output_amt = int(right_side[1])
 				# left hand side
 				var input = side[0]
 				var pattern = input.split(",")
@@ -91,7 +112,7 @@ class RecipeDict:
 					var cur_pair = pattern[i].split(":")
 					id_amt_pairs.append([int(cur_pair[0]), int(cur_pair[1])])
 				# recipe building section
-				var new_recipe = Recipe.new(recipe_id, id_amt_pairs, output_id)
+				var new_recipe = Recipe.new(recipe_id, id_amt_pairs, output_id, output_amt)
 				recipe_dict[recipe_id] = new_recipe
 			if line == "[RECIPE_SECTION]":
 				begin_read = true

@@ -29,8 +29,14 @@ font_data = ExtResource( 3 )
 script = ExtResource( 6 )
 
 [node name="InventoryHUD" type="CenterContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -39,19 +45,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryHUD"]
-margin_left = 202.0
+margin_left = 172.0
 margin_top = 171.0
-margin_right = 822.0
+margin_right = 852.0
 margin_bottom = 429.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BG" type="TextureRect" parent="InventoryHUD/VBoxContainer"]
-margin_right = 620.0
+margin_right = 680.0
 margin_bottom = 240.0
-rect_min_size = Vector2( 620, 240 )
+rect_min_size = Vector2( 680, 240 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 2 )
@@ -78,11 +85,11 @@ __meta__ = {
 }
 
 [node name="Header" type="HBoxContainer" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion"]
-margin_right = 590.0
+margin_right = 650.0
 margin_bottom = 33.0
 
 [node name="Label" type="Label" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion/Header"]
-margin_right = 293.0
+margin_right = 323.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -91,8 +98,8 @@ custom_colors/font_color_shadow = Color( 0.352941, 0.352941, 0.352941, 1 )
 text = "Inventory"
 
 [node name="CraftHeader" type="HBoxContainer" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion/Header"]
-margin_left = 297.0
-margin_right = 590.0
+margin_left = 327.0
+margin_right = 650.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 
@@ -106,7 +113,7 @@ text = "    Crafting"
 
 [node name="Spacing" type="HBoxContainer" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion"]
 margin_top = 37.0
-margin_right = 590.0
+margin_right = 650.0
 margin_bottom = 51.0
 
 [node name="Label" type="Label" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion/Spacing"]
@@ -114,13 +121,13 @@ margin_bottom = 14.0
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion"]
 margin_top = 55.0
-margin_right = 590.0
+margin_right = 650.0
 margin_bottom = 210.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Inventory" type="HBoxContainer" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion/MarginContainer"]
-margin_right = 590.0
+margin_right = 650.0
 margin_bottom = 155.0
 size_flags_horizontal = 3
 
@@ -410,20 +417,21 @@ margin_left = 351.0
 margin_right = 351.0
 margin_bottom = 155.0
 
-[node name="Pattern" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion/MarginContainer/Inventory" instance=ExtResource( 4 )]
+[node name="PatternList" parent="InventoryHUD/VBoxContainer/BG/FG/InnerRegion/MarginContainer/Inventory" instance=ExtResource( 4 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 355.0
 margin_top = 0.0
-margin_right = 590.0
+margin_right = 650.0
 margin_bottom = 155.0
 size_flags_horizontal = 3
+recipe_id_list = [ 0, 1 ]
 
 [node name="Label" type="Label" parent="InventoryHUD/VBoxContainer"]
 margin_top = 244.0
-margin_right = 620.0
+margin_right = 680.0
 margin_bottom = 258.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

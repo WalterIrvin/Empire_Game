@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Textures/button.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Textures/button-activated.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Font/ConnectionIi-2wj8.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Textures/basic.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Scenes/Utility/Pattern.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -15,15 +16,14 @@ font_data = ExtResource( 3 )
 [node name="Pattern" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 109.0
-margin_bottom = 55.0
-size_flags_vertical = 0
-custom_constants/margin_bottom = 20
+margin_bottom = 35.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -66,3 +66,4 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Test Debug Ignore"
 autowrap = true
 max_lines_visible = 2
+[connection signal="button_down" from="MarginContainer/Pattern/IconButton" to="." method="_on_IconButton_button_down"]

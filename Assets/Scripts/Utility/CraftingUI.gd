@@ -58,6 +58,30 @@ func add_item(id, amt):
 					amt -= _item.stack_count
 	else:
 		print("id not found in item-dictionary: " + str(id))
-	
-func check_recipe(recipe_dict):
-	print("test")
+
+func check_item(id, amt):
+	# checks if >= amt of item-id exists in the inventory, returns true/false
+	# keeps track of amt of items, even if split amongst several stacks
+	var total_items = 0 
+	for slot in slot_list:
+		if slot.id == id:
+			total_items += slot.amt
+	if total_items >= amt:
+		return true
+	else:
+		return false
+
+func remove_item(id, amt):
+	var total_left = amt
+	print(amt)
+	for slot in slot_list:
+		if slot.id == id:
+			if total_left > slot.amt:
+				total_left -= slot.amt
+				slot.amt = 0
+				slot.id = -1
+			elif total_left <= slot.amt:
+				slot.amt -= total_left
+				total_left = 0
+	if total_left > 0:
+		print("Error: there are items still left to be removed: ", total_left)
