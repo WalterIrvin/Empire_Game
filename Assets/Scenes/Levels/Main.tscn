@@ -39,3 +39,4 @@ position = Vector2( 410.664, -233.928 )
 position = Vector2( -308.954, -234.997 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0.37738, 0 )
