@@ -22,15 +22,13 @@ func _process(_delta):
 		img_ref.texture = null
 	else:
 		var cur_item = Globals.Global_Item_Dictionary.get_item(id)
-		var cur_stex = StreamTexture.new()
-		cur_stex.load_path = cur_item.stream_path
-		img_ref.texture = cur_stex
+		img_ref.texture = cur_item.get_texture()
 	if amt >= 2:
 		amt_ref.text = "x" + str(amt)
 	else:
 		amt_ref.text = ""
 		
-func _on_Item_gui_input(event):
+func _on_Item_gui_input(_event):
 	if Input.is_action_just_pressed("left_click"):
 		selection_logic(0)
 	elif Input.is_action_just_pressed("right_click"):

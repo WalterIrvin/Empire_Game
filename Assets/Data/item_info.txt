@@ -3,6 +3,7 @@
 # id - numerical value, make sure that it is unique to the item in question
 # name - string that shows up in game for this item
 # stream_texture_path - a file path to the img texture of the item
+# stack - how much item can fit in one slot
 # tool_type - type of tool this is, -1 if it isn't one. otherwise syntax is [0=axe,1=pick,2=shovel]
 # tool_quality - what mining level the tool is, -1 if it isn't tool, otherwise syntax is [0=hand,1=stone,2=copper,3=bronze,4=iron,5=steel,etc.]
 # currently no comments beyond item_section

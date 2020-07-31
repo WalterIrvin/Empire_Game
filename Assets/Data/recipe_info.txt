@@ -5,7 +5,7 @@
 # recipe_id: used to refer to the id when giving a crafting item recipes (for example a furance might have a recipe_id = 12 for burning iron ore to iron bars)
 # [id:amt]: refers to an actual id found in the Globals.Global_Item_Dictionary, along with how much of that item. (note you can have a recipe with just one item)
 # ;: splits the id:amt section from the final section
-# craft_id: the actual item that is crafted from this recipe
+# craft_id: the actual item that is crafted from this recipe, also the number after the ,
 [RECIPE_SECTION]
 0,2:1,1:2;3,1
 1,0:1;2,16

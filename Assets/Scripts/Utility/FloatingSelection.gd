@@ -10,7 +10,7 @@ func _ready():
 	Globals.Global_Floating_Ref = self
 	amt_ref = get_child(0)
 	
-func _process(delta):
+func _process(_delta):
 	if id == -1:
 		amt = 0
 	if amt == 0:

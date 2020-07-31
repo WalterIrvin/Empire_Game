@@ -73,7 +73,6 @@ func check_item(id, amt):
 
 func remove_item(id, amt):
 	var total_left = amt
-	print(amt)
 	for slot in slot_list:
 		if slot.id == id:
 			if total_left > slot.amt:

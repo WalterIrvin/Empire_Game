@@ -8,14 +8,19 @@ class Item:
 	var tool_type = "none"
 	var tool_quality = "none"
 	
-	func _init(id, _name, path, stack, type, quality):
-		self.id = id
+	func _init(_id, _name, path, stack, type, quality):
+		self.id = _id
 		self.name = _name
 		self.stream_path = path
 		self.stack_count = stack
 		self.tool_type = type
 		self.tool_quality = quality
-
+	
+	func get_texture():
+		var texture = StreamTexture.new()
+		texture.load_path = stream_path
+		return texture
+	
 class ItemDict:
 	var item_dictionary = {}
 	func _init(fname):
@@ -62,11 +67,9 @@ class Recipe:
 		id_amt_pair = pairs
 		output_id = crafted_id
 		output_amt = crafted_amt
-	
-	func craft(amt):
-		# checks the inventory of player to see if they have the needed
-		# ingredients to make create the item. Crafts item up to amt if possible
-		# returns true if successful, false otherwise
+		
+	func check_recipe(amt):
+		# checks if recipe is valid, returns true/false respectively
 		if Globals.Global_Inventory != null:
 			# check if the inventory has enough of all items for the amt needed
 			for pair in id_amt_pair:
@@ -74,17 +77,27 @@ class Recipe:
 				var _amt = pair[1] * amt
 				if not Globals.Global_Inventory.check_item(_id, _amt):
 					return false
+			return true
+		else:
+			return false
+			
+	func craft(amt):
+		# checks the inventory of player to see if they have the needed
+		# ingredients to make create the item. Crafts item up to amt if possible
+		# returns true if successful, false otherwise
+		var valid = check_recipe(amt)
+		if valid:
 			# Removes all the items, after having check all are enough
 			for pair in id_amt_pair:
 				var _id = pair[0]
 				var _amt = pair[1] * amt
-				print(_amt)
 				Globals.Global_Inventory.remove_item(_id, _amt)
 			# adds the crafted item * amt at the end
 			Globals.Global_Inventory.add_item(output_id, amt * output_amt)
 			return true
 		else:
 			return false
+
 
 class RecipeDict:
 	var recipe_dict = {}
@@ -117,8 +130,20 @@ class RecipeDict:
 			if line == "[RECIPE_SECTION]":
 				begin_read = true
 		file.close()
-	
+		
+	func get_output_item_id(id):
+		"""gets the crafted item id for a given recipe id, returns null
+		if no output found"""
+		var recipe = get_recipe(id)
+		if recipe == null:
+			return null
+		else:
+			var item_id = recipe.output_id
+			return item_id
+			
 	func get_recipe(id):
+		"""gets the recipe with specified id, returns null
+		if no recipe found."""
 		if recipe_dict.has(int(id)):
 			return recipe_dict[int(id)]
 		else:
@@ -136,7 +161,7 @@ class PlayerData:
 	var max_hunger = 100
 	var thirst = 100
 	var max_thirst = 100 
-	var hunger_rate = 1.05
+	var hunger_rate = 0.15
 	var thirst_rate = 0.09
 	var starve_damage = 0.7
 	var dehydrate_damage = 0.5

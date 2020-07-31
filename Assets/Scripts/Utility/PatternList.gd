@@ -5,9 +5,12 @@ extends Control
 export var recipe_id_list = []
 var recipe_list_ref
 var cur_id = 0
+var tooltip_ref = null
 
 func _ready():
+	"""Loads up all the needed recipes from the global recipe dictionary"""
 	recipe_list_ref = find_node("Recipe_List")
+	tooltip_ref = find_node("PatternTooltip")
 	var pattern_template = load("res://Assets/Scenes/Utility/Pattern.tscn")
 	for i in range(len(recipe_id_list)):
 		var new_pattern = pattern_template.instance()
@@ -15,7 +18,10 @@ func _ready():
 		new_pattern.set_recipe(recipe_id_list[i])
 
 func switch_cur_selected_pattern(recipe_id):
+	"""Activated whenever a pattern is selected, updates the item description
+	and the item to be crafted when the craft button is clicked."""
 	cur_id = recipe_id
+	tooltip_ref.update_tooltip(recipe_id)
 
 
 func _on_CraftingButton_button_down():

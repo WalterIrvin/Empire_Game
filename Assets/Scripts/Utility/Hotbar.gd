@@ -11,7 +11,7 @@ func _ready():
 func get_selected_item():
 	return hotbar_slots[cur_slot -1]
 	
-func _process(delta):
+func _process(_delta):
 	process_input()
 	set_active()
 	for slot in hotbar_slots:
